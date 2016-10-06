@@ -11,9 +11,10 @@
      $scope.message = '';
 
      $scope.showMessage = function() {
-       var dishesQuantity = checkQuantity($scope.dishes);
+       var dishesQuantity = getQuantity($scope.dishes);
+
        if (dishesQuantity === 0) {
-         $scope.message = 'Please enter data first!'
+         $scope.message = 'Please enter data first!';
        } else if (dishesQuantity > 0 && dishesQuantity <= 3) {
          $scope.message = 'Enjoy!'
        } else {
@@ -23,9 +24,18 @@
 
    }
 
-   function checkQuantity (string) {
-     return string ? string.split(',').length : 0;
-   }
+  function getQuantity (str) {
+    var array = str.split(',');
+    var filteredArray = [];
+    var trimmedArray = array.forEach(function(item) {
+      if (item.trim().length > 0) {
+        filteredArray.push(item);
+      }
+    })
+    return filteredArray.length;
+  }
+
+
 
 
 })();
