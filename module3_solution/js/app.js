@@ -27,6 +27,8 @@ function foundItems(){
 
 function NarrowItDownDirectiveController() {
   var ctrl = this;
+
+  ctrl.message = 'Nothi'
 };
 
 
@@ -34,14 +36,17 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var ctrl = this;
 
-  ctrl.searchTerm = '';
+  ctrl.title = 'Nothing found';
 
   ctrl.showSearchedItems = function() {
     var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
     promise.then(function(response) {
       ctrl.found = response;
-      console.log(ctrl.found);
-      ctrl.title = 'Found ' + ctrl.found.length + ' item(s)';
+      if (ctrl.found.length) {
+        ctrl.title = 'Found ' + ctrl.found.length + ' item(s)';
+      } else {
+        ctrl.title = 'Nothing found'
+      }
     })
   };
 
