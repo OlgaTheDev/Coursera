@@ -11,12 +11,22 @@ angular.module('NarrowItDownApp', [])
 function foundItems(){
   var ddo = {
     templateUrl: 'foundItems.html',
-    restrict: 'A'
-    // scope: {
-    //   title: '@title'
-    // }
+    restrict: 'A',
+    scope: {
+      foundItems: '<',
+      myTitle: '@title',
+      onRemove: '&'
+    },
+    controller: NarrowItDownDirectiveController,
+    controllerAs: 'ctrl',
+    bindToController: true
+
   };
   return ddo;
+};
+
+function NarrowItDownDirectiveController() {
+  var ctrl = this;
 };
 
 
@@ -30,6 +40,7 @@ function NarrowItDownController(MenuSearchService) {
     var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
     promise.then(function(response) {
       ctrl.found = response;
+      console.log(ctrl.found);
       ctrl.title = 'Found ' + ctrl.found.length + ' item(s)';
     })
   };

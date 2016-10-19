@@ -44,7 +44,10 @@
 
 
     <!-- found-items should be implemented as a component -->
-    <found-items found-items="...." on-remove="...." ></found-items>
+    <found-items
+      found-items="ctrl.found"
+      on-remove="ctrl.removeItem(index)"
+      title="{{ctrl.title}}" ></found-items>
   </div>
 
 </body>

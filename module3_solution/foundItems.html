@@ -1,6 +1,6 @@
-<h3>{{ ctrl.title }}</h3>
+<h3>{{ ctrl.myTitle }}</h3>
 <table class="table table-striped">
-  <tr ng-repeat="item in ctrl.found">
+  <tr ng-repeat="item in ctrl.foundItems">
     <td>
       {{item.name}}
     </td>
@@ -14,7 +14,7 @@
       {{item.price_large}}
     </td>
     <td>
-      <button ng-click="ctrl.removeItem($index)" class="btn btn-default" type="button" name="button">Don't want this one!</button>
+      <button ng-click="ctrl.onRemove({index: $index});" class="btn btn-default" type="button" name="button">Don't want this one!</button>
     </td>
   </tr>
 </table>
