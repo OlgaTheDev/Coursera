@@ -12,14 +12,17 @@
    <div class="container" ng-controller="NarrowItDownController as ctrl">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
 
-    <div class="form-group">
-      <input ng-model="ctrl.searchTerm" type="text" placeholder="search term" class="form-control">
-    </div>
-    <div class="form-group narrow-button">
-      <button ng-click="ctrl.showSearchedItems()" class="btn btn-primary">Narrow It Down For Me!</button>
-    </div>
+<div class="">
+  <div class="form-group">
+    <input ng-model="ctrl.searchTerm" type="text" placeholder="search term" class="form-control">
+  </div>
+  <div class="form-group narrow-button">
+    <button ng-click="ctrl.showSearchedItems()" class="btn btn-primary">Narrow It Down For Me!</button>
+  </div>
+</div>
 
-  <table class="table table-striped">
+
+  <!-- <table class="table table-striped">
     <tr ng-repeat="item in ctrl.found">
       <td>
         {{item.name}}
@@ -33,12 +36,15 @@
       <td>
         {{item.price_large}}
       </td>
+      <td>
+        <button ng-click="ctrl.deleteItem();" class="btn btn-default" type="button" name="button">Don't want this one!</button>
+      </td>
     </tr>
-  </table>
+  </table> -->
 
 
     <!-- found-items should be implemented as a component -->
-    <!-- <found-items found-items="...." on-remove="...."></found-items> -->
+    <found-items found-items="...." on-remove="...." ></found-items>
   </div>
 
 </body>

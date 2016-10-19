@@ -1,0 +1,20 @@
+<h3>{{ ctrl.title }}</h3>
+<table class="table table-striped">
+  <tr ng-repeat="item in ctrl.found">
+    <td>
+      {{item.name}}
+    </td>
+    <td>
+      {{item.description}}
+    </td>
+    <td>
+      {{item.price_small}}
+    </td>
+    <td>
+      {{item.price_large}}
+    </td>
+    <td>
+      <button ng-click="ctrl.removeItem($index)" class="btn btn-default" type="button" name="button">Don't want this one!</button>
+    </td>
+  </tr>
+</table>

@@ -4,7 +4,20 @@
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
 .service('MenuSearchService', MenuSearchService)
-.constant('ApiPath', 'https://davids-restaurant.herokuapp.com');
+.constant('ApiPath', 'https://davids-restaurant.herokuapp.com')
+.directive('foundItems', foundItems);
+
+
+function foundItems(){
+  var ddo = {
+    templateUrl: 'foundItems.html',
+    restrict: 'A'
+    // scope: {
+    //   title: '@title'
+    // }
+  };
+  return ddo;
+};
 
 
 NarrowItDownController.$inject = ['MenuSearchService'];
@@ -17,9 +30,14 @@ function NarrowItDownController(MenuSearchService) {
     var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
     promise.then(function(response) {
       ctrl.found = response;
+      ctrl.title = 'Found ' + ctrl.found.length + ' item(s)';
     })
   };
 
+  ctrl.removeItem = function(index){
+    ctrl.found.splice(index, 1);
+    ctrl.title = 'Found ' + ctrl.found.length + ' item(s)';
+  };
 };
 
 
