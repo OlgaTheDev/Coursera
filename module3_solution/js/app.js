@@ -11,10 +11,10 @@ angular.module('NarrowItDownApp', [])
 function foundItems(){
   var ddo = {
     templateUrl: 'foundItems.html',
-    restrict: 'A',
+    restrict: 'E',
     scope: {
       foundItems: '<',
-      myTitle: '@title',
+      myMessage: '@message',
       onRemove: '&'
     },
     controller: NarrowItDownDirectiveController,
@@ -27,8 +27,6 @@ function foundItems(){
 
 function NarrowItDownDirectiveController() {
   var ctrl = this;
-
-  ctrl.message = 'Nothi'
 };
 
 
@@ -36,23 +34,26 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var ctrl = this;
 
-  ctrl.title = 'Nothing found';
-
   ctrl.showSearchedItems = function() {
-    var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
-    promise.then(function(response) {
-      ctrl.found = response;
-      if (ctrl.found.length) {
-        ctrl.title = 'Found ' + ctrl.found.length + ' item(s)';
-      } else {
-        ctrl.title = 'Nothing found'
-      }
-    })
+
+  ctrl.message = 'please wait untill loading...';
+
+  var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
+
+  promise.then(function(response) {
+    ctrl.found = response;
+
+    if (ctrl.found.length) {
+      ctrl.message = 'Found ' + ctrl.found.length + ' item(s)';
+    } else {
+      ctrl.message = 'Nothing found'
+    }
+  })
   };
 
   ctrl.removeItem = function(index){
     ctrl.found.splice(index, 1);
-    ctrl.title = 'Found ' + ctrl.found.length + ' item(s)';
+    ctrl.message = 'Found ' + ctrl.found.length + ' item(s)';
   };
 };
 
@@ -62,7 +63,6 @@ function MenuSearchService($http, ApiPath) {
   var service = this;
 
   service.getMatchedMenuItems = function(searchTerm){
-    var searchTermLowerCase = searchTerm.toLowerCase();
 
     return $http({
       method: 'GET',
@@ -70,11 +70,13 @@ function MenuSearchService($http, ApiPath) {
     })
     .then(function(result){
       var foundItems = [];
-      result.data.menu_items.forEach(function (item) {
-        if (item.description.indexOf(searchTermLowerCase) !== -1) {
-          foundItems.push(item);
-        }
-      });
+      if (searchTerm !== ''){
+        result.data.menu_items.forEach(function (item) {
+          if (item.description.toLowerCase().indexOf(searchTerm) !== -1) {
+            foundItems.push(item);
+          }
+        });
+      }
 
       return foundItems;
     });
