@@ -1,0 +1,19 @@
+<p>
+  There are {{$ctrl.items.length}} courses in this category
+</p>
+<table class="table table-striped">
+  <tr ng-repeat="item in $ctrl.items">
+    <td>
+      {{item.name}}
+    </td>
+    <td>
+      {{item.description}}
+    </td>
+    <td>
+      {{item.price_large}}
+    </td>
+    <td>
+      {{item.price_small}}
+    </td>
+  </tr>
+</table>
