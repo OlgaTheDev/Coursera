@@ -2,6 +2,20 @@
   There are {{$ctrl.items.length}} courses in this category
 </p>
 <table class="table table-striped">
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Description
+    </th>
+    <th>
+      Price (sm)
+    </th>
+    <th>
+      Price (lg)
+    </th>
+  </tr>
   <tr ng-repeat="item in $ctrl.items">
     <td>
       {{item.name}}
