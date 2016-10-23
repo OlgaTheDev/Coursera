@@ -29,22 +29,14 @@ function routesConfig($urlRouterProvider, $stateProvider){
   })
 
   .state('items', {
-    url: '/categories/{short_name}/{name}',
+    url: '/categories/{short_name}',
     templateUrl: 'src/templates/items.template.html',
     controller: 'ItemsController as itemsCtrl',
     resolve: {
       items: ['$stateParams', 'MenuDataService', function($stateParams, MenuDataService) {
         return MenuDataService.getItemsForCategory($stateParams.short_name);
       }]
-      // categoryName: ['$stateParams', function($stateParams) {
-      //    return $stateParams.short_name;
-      //  }]
     }
-    // params: {
-    //   categoryName: ['$stateParams', function($stateParams) {
-    //     return $stateParams.name;
-    //   }]
-    // }
   })
 }
 
