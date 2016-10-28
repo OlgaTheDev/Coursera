@@ -1,9 +1,9 @@
-<h3>Category <u> {{itemsCtrl.categoryName}} </u> menu</h3>
+<h3 ng-if="!itemsCtrl.itemsEmpty">Category <u> {{itemsCtrl.categoryName}} </u> menu</h3>
 
 <hr>
 <a ui-sref="home">Home</a>&nbsp;/
 <a ui-sref="categories">Categories</a>&nbsp;/
 <span>Category</span>
 <hr>
-
-<items-list items="itemsCtrl.items"></items-list>
+<span ng-if="itemsCtrl.itemsEmpty">No items found</span>
+<items-list ng-if="!itemsCtrl.itemsEmpty" items="itemsCtrl.items"></items-list>

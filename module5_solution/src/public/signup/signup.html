@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Subscribe form</h1>
+
+      <hr>
+      
+      <p>Please fill out the form below</p>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <signup-form
+      user="signupCtrl.user"
+      on-signup="signupCtrl.signup(user)"
+      completed="signupCtrl.completed"></signup-form>
+    </div>
+  </div>
+</div>

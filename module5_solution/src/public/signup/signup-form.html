@@ -1,0 +1,79 @@
+<form name="signupForm" novalidate class="form-horizontal">
+
+<div class="form-group">
+  <label for="fname" class="col-sm-2 control-label">First name</label>
+  <div class="col-sm-6">
+    <input type="text" class="form-control" id="fname" placeholder="First name"
+    ng-model="$ctrl.user.fname"
+    required
+    name="fname" >
+  </div>
+  <div class="col-sm-4" ng-if="signupForm.fname.$error.required && signupForm.fname.$touched">
+    Please enter your first name
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="lname" class="col-sm-2 control-label">Last name</label>
+  <div class="col-sm-6">
+    <input type="text" class="form-control" id="lname" placeholder="Last name"
+    ng-model="$ctrl.user.lname"
+    required
+    name="lname" >
+  </div>
+  <div class="col-sm-4" ng-if="signupForm.lname.$error.required && signupForm.lname.$touched">
+    Please enter your last name
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="email" class="col-sm-2 control-label">E-mail</label>
+  <div class="col-sm-6">
+    <input type="email" class="form-control" id="email" placeholder="E-mail"
+    ng-model="$ctrl.user.email"
+    required
+    name="email" >
+  </div>
+  <!-- <div class="col-sm-4" ng-if="signupForm.email.$error.required && signupForm.email.$touched">
+    Please enter your e-mail
+  </div> -->
+  <div class="col-sm-4" ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+    Please enter valid e-mail
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="tel" class="col-sm-2 control-label">Phone</label>
+  <div class="col-sm-6">
+    <input type="text" class="form-control" id="tel" placeholder="Phone ###-###-##-##"
+    ng-model="$ctrl.user.phone"
+    required
+    name="phone"
+    pattern="(\d{3})-(\d{3})-(\d{2})-(\d{2})">
+  </div>
+  <div class="col-sm-4" ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+    Phone must be in the format ###-###-##-##
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="favDish" class="col-sm-2 control-label">Favorite dish</label>
+  <div class="col-sm-6">
+    <input  type="text" class="form-control" id="favDish" placeholder="Dish short name"
+    ng-model="$ctrl.user.favDish"
+    required
+    name="favDish">
+  </div>
+  <div class="col-sm-4" ng-if="signupForm.favDish.$error.required && signupForm.favDish.$touched">
+    Please specify your favorite dish
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-6">
+    <button ng-click="$ctrl.onSignup({user: $ctrl.user});" ng-disabled="signupForm.$invalid" type="submit" class="btn btn-default btn-block">Sign up</button>
+  </div>
+</div>
+<div class="col-sm-offset-2 col-sm-6" ng-if="$ctrl.completed">
+  Your information has been saved
+</div>
+</form>
