@@ -6,6 +6,7 @@ angular.module('public').component('signupForm', {
   bindings: {
     user: '=',
     onSignup: '&',
+    favDishStatus: '<',
     completed: '<'
   }
 });

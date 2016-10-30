@@ -9,12 +9,18 @@ function SignupController(SignupService) {
 
   signupCtrl.user = {};
   signupCtrl.completed = false;
+  signupCtrl.favDishStatus = true;
 
   signupCtrl.signup = function(user) {
-    SignupService.signup(user);
-    signupCtrl.completed = true;
+    var promise = SignupService.signup(user);
+    promise.then(function(response) {
+      signupCtrl.completed = response.completed;
+      signupCtrl.favDishStatus = response.favDishValid;
+    }, function(response) {
+      signupCtrl.completed = response.completed;
+      signupCtrl.favDishStatus = response.favDishValid;
+    });
   }
 }
-
 
 })();

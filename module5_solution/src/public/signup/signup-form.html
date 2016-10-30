@@ -67,6 +67,9 @@
   <div class="col-sm-4" ng-if="signupForm.favDish.$error.required && signupForm.favDish.$touched">
     Please specify your favorite dish
   </div>
+  <div class="col-sm-4" ng-if="!$ctrl.favDishStatus">
+    There is no such dish
+  </div>
 </div>
 <div class="form-group">
   <div class="col-sm-offset-2 col-sm-6">

@@ -36,19 +36,19 @@ function NarrowItDownController(MenuSearchService) {
 
   ctrl.showSearchedItems = function() {
 
-  ctrl.message = 'please wait untill loading...';
+    ctrl.message = 'please wait untill loading...';
 
-  var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
+    var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
 
-  promise.then(function(response) {
-    ctrl.found = response;
+    promise.then(function(response) {
+      ctrl.found = response;
 
-    if (ctrl.found.length) {
-      ctrl.message = 'Found ' + ctrl.found.length + ' item(s)';
-    } else {
-      ctrl.message = 'Nothing found'
-    }
-  })
+      if (ctrl.found.length) {
+        ctrl.message = 'Found ' + ctrl.found.length + ' item(s)';
+      } else {
+        ctrl.message = 'Nothing found'
+      }
+    })
   };
 
   ctrl.removeItem = function(index){
