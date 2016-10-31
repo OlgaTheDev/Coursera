@@ -11,23 +11,33 @@ function SignupService($http, ApiPath, $q) {
 
   service.signup = function(user) {
 
-    var deffered = $q.defer();
+    //Leave it here to remember it can be done through $q.defer()
+    // var deffered = $q.defer();
 
     var request = $http.get(ApiPath + '/menu_items/' + user.favDish + '.json');
     request.then(function(response) {
       service.master = angular.copy(user);
-      deffered.resolve({
-        completed: true,
-        favDishValid:true
-      });
+      service.completed = true;
+      service.favDishValid = true;
+      service.master.favDishName = response.data.name;
+      service.master.favDishDecription = response.data.description; 
+      console.log(response.data);
+
+      // deffered.resolve({
+      //   completed: true,
+      //   favDishValid:true
+      // });
     }, function (data) {
-      deffered.reject({
-        completed: false,
-        favDishValid:false
-      });
+      service.completed = false;
+      service.favDishValid = false;
+      // deffered.reject({
+      //   completed: false,
+      //   favDishValid:false
+      // });
     });
 
-    return deffered.promise;
+    // return deffered.promise;
+    return request;
   };
 }
 

@@ -1,3 +1,63 @@
 <div class="container">
-  hello world!
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>User info</h1>
+      <hr>
+      <h3 ng-if="infoCtrl.loggedIn">Hello, {{infoCtrl.user.fname}} {{infoCtrl.user.lname}}</h3>
+    </div>
+  </div>
+
+  <user-info-block
+  user="infoCtrl.user"
+  ></user-info-block>
+
+  <div class="row">
+
+    <!-- if logged in -->
+    <div class="col-lg-6" ng-if="infoCtrl.loggedIn">
+      <table class="table table-bordered">
+        <tr>
+          <td> <strong> First name </strong> </td>
+          <td> {{infoCtrl.user.fname}} </td>
+        </tr>
+
+        <tr>
+          <td> <strong> Last name </strong> </td>
+          <td> {{infoCtrl.user.lname}} </td>
+        </tr>
+
+        <tr>
+          <td> <strong> E-mail </strong> </td>
+          <td> {{infoCtrl.user.email}} </td>
+        </tr>
+
+        <tr>
+          <td> <strong> Phone number </strong> </td>
+          <td> {{infoCtrl.user.phone}} </td>
+        </tr>
+
+        <tr>
+          <td> <strong> Favorite dish </strong> </td>
+          <td> <u>{{infoCtrl.user.favDishName}}</u>
+            <br/>
+            {{infoCtrl.user.favDishDecription}}
+            <br/>
+            <img class="img-responsive" width="250" height="150" ng-src="{{infoCtrl.basePath}}/images/{{infoCtrl.user.favDish}}.jpg" alt="{{infoCtrl.user.favDish}}">
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- if not logged in -->
+    <div class="col-xs-12" ng-if="!infoCtrl.loggedIn">
+      <p>
+        Not Signed Up Yet.
+        <a ui-sref="public.signup">Sign up Now!</a>
+      </p>
+    </div>
+
+  </div>
+
+
+
 </div>

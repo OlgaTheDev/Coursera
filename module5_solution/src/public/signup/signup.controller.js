@@ -14,11 +14,11 @@ function SignupController(SignupService) {
   signupCtrl.signup = function(user) {
     var promise = SignupService.signup(user);
     promise.then(function(response) {
-      signupCtrl.completed = response.completed;
-      signupCtrl.favDishStatus = response.favDishValid;
+      signupCtrl.completed = SignupService.completed;
+      signupCtrl.favDishStatus = SignupService.favDishValid;
     }, function(response) {
-      signupCtrl.completed = response.completed;
-      signupCtrl.favDishStatus = response.favDishValid;
+      signupCtrl.completed = SignupService.completed;
+      signupCtrl.favDishStatus = SignupService.favDishValid;
     });
   }
 }
