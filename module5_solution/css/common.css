@@ -20,10 +20,10 @@
 }
 
 /* FORM VALIDATION CATEGORY PAGE */
-.form-group input.ng-invalid.ng-touched {
+/*.form-group input.ng-invalid.ng-touched {
     border-color: #FA787E;
   }
 
   .form-group input.ng-valid.ng-touched {
     border-color: #78FA89;
-  }
+  }*/
